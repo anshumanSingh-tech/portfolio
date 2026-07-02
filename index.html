@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anshuman Singh Chouhan — Data Analyst &amp; Data Engineer Portfolio</title>
+<meta name="description" content="Portfolio of Anshuman Singh Chouhan — Data Analyst / Data Engineer. End-to-end pipelines, dashboards, and ML models built on real-world data." />
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0b0f14;
+    --panel:#10161d;
+    --panel-2:#141c25;
+    --line:#22303d;
+    --text:#e7edf2;
+    --text-dim:#9fb0bd;
+    --text-faint:#5d717f;
+    --amber:#f0a83a;
+    --teal:#46c7b8;
+    --teal-dim:#2a5750;
+    --danger:#e16259;
+    --radius:14px;
+    --maxw:1180px;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+    background-size:28px 28px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--amber);color:#10161d;}
+
+  :focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,15,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:var(--maxw);margin:0 auto;
+  }
+  .logo{
+    font-family:var(--font-mono);font-size:15px;font-weight:600;color:var(--text);
+    display:flex;align-items:center;gap:8px;letter-spacing:0.02em;
+  }
+  .logo .dot{color:var(--teal);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{
+    font-size:14px;color:var(--text-dim);font-weight:500;transition:color .2s;
+    font-family:var(--font-mono);
+  }
+  .nav-links a:hover{color:var(--amber);}
+  .nav-cta{
+    border:1px solid var(--teal-dim);background:rgba(70,199,184,0.08);
+    padding:8px 16px;border-radius:8px;color:var(--teal)!important;font-size:13px!important;
+  }
+  .nav-cta:hover{background:rgba(70,199,184,0.18);color:var(--teal)!important;}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;}
+
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed;top:64px;left:0;right:0;
+      background:var(--panel);border-bottom:1px solid var(--line);
+      flex-direction:column;align-items:flex-start;padding:20px 24px;gap:18px;
+      transform:translateY(-110%);opacity:0;transition:transform .25s ease, opacity .25s ease;
+      pointer-events:none;
+    }
+    .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:110px 0 70px;position:relative;
+  }
+  .hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  @media (max-width:900px){.hero-inner{grid-template-columns:1fr;gap:40px;}}
+
+  .eyebrow{
+    font-family:var(--font-mono);font-size:13px;color:var(--teal);
+    letter-spacing:0.06em;margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{
+    content:'';width:8px;height:8px;border-radius:50%;background:var(--teal);
+    box-shadow:0 0 0 4px rgba(70,199,184,0.18);
+  }
+
+  h1.title{
+    font-family:var(--font-display);font-size:clamp(34px,5.2vw,58px);
+    line-height:1.08;font-weight:700;color:var(--text);margin-bottom:18px;
+    letter-spacing:-0.01em;
+  }
+  h1.title .accent{color:var(--amber);}
+
+  .hero-sub{
+    font-size:17px;color:var(--text-dim);max-width:540px;margin-bottom:30px;
+  }
+
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px;}
+  .btn{
+    font-family:var(--font-mono);font-size:14px;font-weight:500;
+    padding:13px 22px;border-radius:9px;display:inline-flex;align-items:center;gap:8px;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease;
+    border:1px solid transparent;cursor:pointer;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--amber);color:#1a1304;}
+  .btn-primary:hover{background:#f5b65a;}
+  .btn-outline{border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,0.02);}
+  .btn-outline:hover{border-color:var(--teal-dim);color:var(--teal);}
+
+  .hero-links{display:flex;gap:18px;font-family:var(--font-mono);font-size:13px;color:var(--text-faint);}
+  .hero-links a{color:var(--text-dim);border-bottom:1px solid transparent;}
+  .hero-links a:hover{color:var(--amber);border-bottom-color:var(--amber);}
+
+  /* Query terminal — signature element */
+  .terminal{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    display:flex;align-items:center;gap:8px;padding:11px 16px;
+    background:var(--panel-2);border-bottom:1px solid var(--line);
+  }
+  .terminal-bar span{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .terminal-bar .r{background:#e1605a;}
+  .terminal-bar .y{background:#e0ad4f;}
+  .terminal-bar .g{background:#52c27d;}
+  .terminal-bar .label{
+    margin-left:8px;font-family:var(--font-mono);font-size:12px;color:var(--text-faint);
+  }
+  .terminal-body{padding:22px 20px;font-family:var(--font-mono);font-size:13.5px;line-height:1.9;}
+  .terminal-body .ln{color:var(--text-faint);margin-right:14px;user-select:none;}
+  .kw{color:var(--teal);}
+  .str{color:var(--amber);}
+  .com{color:var(--text-faint);}
+  .cursor{
+    display:inline-block;width:8px;height:15px;background:var(--teal);
+    vertical-align:middle;margin-left:2px;animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .metrics-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);}
+  .metric{
+    padding:16px 14px;border-right:1px solid var(--line);text-align:left;
+  }
+  .metric:last-child{border-right:none;}
+  .metric .num{font-family:var(--font-mono);font-size:18px;font-weight:600;color:var(--amber);}
+  .metric .lbl{font-size:10.5px;color:var(--text-faint);margin-top:3px;letter-spacing:0.02em;}
+  @media (max-width:520px){
+    .metrics-row{grid-template-columns:repeat(2,1fr);}
+    .metric:nth-child(2){border-right:none;}
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:90px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:48px;max-width:640px;}
+  .section-tag{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint);
+    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;
+  }
+  .section-tag .n{color:var(--teal);}
+  h2.section-title{
+    font-family:var(--font-display);font-size:clamp(26px,3.4vw,38px);
+    font-weight:700;color:var(--text);margin-bottom:14px;letter-spacing:-0.01em;
+  }
+  .section-desc{color:var(--text-dim);font-size:15.5px;max-width:560px;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    display:grid;grid-template-columns:auto 1fr;gap:28px;
+    padding:36px 0;border-bottom:1px solid var(--line);
+  }
+  .project:last-child{border-bottom:none;}
+  .project-index{
+    font-family:var(--font-mono);font-size:14px;color:var(--text-faint);padding-top:4px;
+  }
+  @media (max-width:700px){
+    .project{grid-template-columns:1fr;gap:14px;}
+  }
+
+  .project-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px;transition:border-color .25s ease, transform .25s ease;
+  }
+  .project-card:hover{border-color:var(--teal-dim);transform:translateY(-3px);}
+
+  .project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:14px;}
+  .project-name{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--text);}
+  .project-role{
+    font-family:var(--font-mono);font-size:11px;color:var(--teal);
+    border:1px solid var(--teal-dim);background:rgba(70,199,184,0.08);
+    padding:4px 10px;border-radius:6px;white-space:nowrap;
+  }
+
+  .project-desc{color:var(--text-dim);font-size:15px;margin-bottom:18px;max-width:760px;}
+
+  .project-stack{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .chip{
+    font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);
+    border:1px solid var(--line);padding:5px 10px;border-radius:6px;background:rgba(255,255,255,0.02);
+  }
+
+  .project-stats{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:24px;padding:16px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);}
+  .pstat .num{font-family:var(--font-mono);font-weight:600;color:var(--amber);font-size:16px;}
+  .pstat .lbl{font-size:11.5px;color:var(--text-faint);margin-top:2px;}
+
+  .project-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .link-btn{
+    font-family:var(--font-mono);font-size:13px;display:inline-flex;align-items:center;gap:7px;
+    padding:10px 16px;border-radius:8px;border:1px solid var(--line);color:var(--text);
+    transition:all .2s ease;
+  }
+  .link-btn.live{border-color:var(--teal-dim);color:var(--teal);}
+  .link-btn.live:hover{background:rgba(70,199,184,0.1);}
+  .link-btn.code:hover{border-color:var(--text-faint);background:rgba(255,255,255,0.04);}
+  .link-btn svg{width:14px;height:14px;}
+
+  /* ---------- CERTS ---------- */
+  .certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:860px){.certs-grid{grid-template-columns:1fr;}}
+  .cert-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s, transform .2s;
+  }
+  .cert-card:hover{border-color:var(--amber);transform:translateY(-3px);}
+  .cert-top{display:flex;align-items:center;gap:12px;}
+  .cert-badge{
+    width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    background:rgba(240,168,58,0.12);color:var(--amber);font-family:var(--font-mono);font-weight:600;font-size:13px;
+    flex-shrink:0;border:1px solid rgba(240,168,58,0.3);
+  }
+  .cert-issuer{font-size:11px;color:var(--text-faint);font-family:var(--font-mono);letter-spacing:0.03em;}
+  .cert-name{font-family:var(--font-display);font-weight:600;font-size:16.5px;color:var(--text);}
+  .cert-meta{font-size:12.5px;color:var(--text-dim);}
+  .verify-link{
+    margin-top:auto;font-family:var(--font-mono);font-size:12.5px;color:var(--teal);
+    display:inline-flex;align-items:center;gap:6px;border-top:1px solid var(--line);padding-top:14px;
+  }
+  .verify-link:hover{color:var(--amber);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  @media (max-width:860px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-group-title{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--teal);text-transform:uppercase;
+    letter-spacing:0.06em;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line);
+  }
+  .skill-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-pill{
+    font-size:13.5px;color:var(--text);padding:7px 13px;border-radius:7px;
+    background:var(--panel);border:1px solid var(--line);
+  }
+
+  /* ---------- ABOUT / TIMELINE ---------- */
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:50px;align-items:start;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:var(--text-dim);margin-bottom:16px;font-size:15.5px;}
+  .about-text strong{color:var(--text);font-weight:600;}
+
+  .fact-list{display:flex;flex-direction:column;gap:0;}
+  .fact{
+    display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .fact .k{color:var(--text-faint);font-family:var(--font-mono);}
+  .fact .v{color:var(--text);font-weight:500;text-align:right;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-section{
+    text-align:center;padding:100px 0 60px;
+  }
+  .contact-section h2{
+    font-family:var(--font-display);font-size:clamp(28px,4.5vw,46px);font-weight:700;
+    margin-bottom:16px;
+  }
+  .contact-section .section-desc{margin:0 auto 36px;}
+  .contact-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:50px;}
+
+  .contact-grid{
+    display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+    font-family:var(--font-mono);font-size:14px;
+  }
+  .contact-grid a{color:var(--text-dim);display:flex;align-items:center;gap:8px;}
+  .contact-grid a:hover{color:var(--amber);}
+
+  footer{
+    border-top:1px solid var(--line);padding:28px 0;text-align:center;
+    font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint);
+  }
+  footer a{color:var(--text-faint);text-decoration:underline;text-decoration-color:var(--line);}
+  footer a:hover{color:var(--teal);}
+
+  .back-to-top{
+    position:fixed;bottom:26px;right:26px;width:42px;height:42px;border-radius:50%;
+    background:var(--panel);border:1px solid var(--line);color:var(--teal);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    opacity:0;pointer-events:none;transition:opacity .25s ease, transform .2s ease;z-index:90;
+  }
+  .back-to-top.show{opacity:1;pointer-events:auto;}
+  .back-to-top:hover{transform:translateY(-3px);border-color:var(--teal-dim);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo"><span class="dot">●</span>anshuman<span style="color:var(--text-faint)">.dev</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#projects">Projects</a>
+      <a href="#certs">Certifications</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" style="border-top:none;padding-top:70px;">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow">OPEN TO DATA ANALYST / DATA ENGINEER ROLES</div>
+        <h1 class="title">I turn raw, messy<br>data into <span class="accent">decisions</span><br>recruiters can trust.</h1>
+        <p class="hero-sub">
+          ⟦Your Name⟧ — Data Analyst &amp; Data Engineer. I build end-to-end pipelines:
+          ingestion → cleaning → modeling → dashboards, and I ship them where anyone
+          can actually click and look, not just read about.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+          <a href="⟦RESUME_PDF_URL⟧" target="_blank" rel="noopener" class="btn btn-outline">Download Résumé</a>
+        </div>
+        <div class="hero-links">
+          <a href="mailto:⟦anshuman71134@gmail.com⟧">Email</a>
+          <a href="⟦LINKEDIN_URL⟧" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/anshumanSingh-tech" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <div class="terminal reveal" id="heroTerminal">
+        <div class="terminal-bar">
+          <span class="r"></span><span class="y"></span><span class="g"></span>
+          <span class="label">portfolio.sql</span>
+        </div>
+        <div class="terminal-body">
+<div><span class="ln">1</span><span class="kw">SELECT</span> name, role, status</div>
+<div><span class="ln">2</span><span class="kw">FROM</span> candidates</div>
+<div><span class="ln">3</span><span class="kw">WHERE</span> role <span class="kw">IN</span> (<span class="str">'Data Analyst'</span>, <span class="str">'Data Engineer'</span>)</div>
+<div><span class="ln">4</span><span class="kw">AND</span> can_ship = <span class="str">TRUE</span>;</div>
+<div>&nbsp;</div>
+<div><span class="com">-- 1 row returned</span></div>
+<div><span class="ln">›</span> Anshuman Singh Chouhan | Open to work | Available now<span class="cursor"></span></div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric"><div class="num">1M+</div><div class="lbl">RETAIL ROWS CLEANED</div></div>
+          <div class="metric"><div class="num">19</div><div class="lbl">IPL SEASONS MODELED</div></div>
+          <div class="metric"><div class="num">5,861</div><div class="lbl">CUSTOMERS SEGMENTED</div></div>
+          <div class="metric"><div class="num">3</div><div class="lbl">PROJECTS LIVE</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-tag"><span class="n">01</span> · SELECTED WORK</div>
+        <h2 class="section-title">Projects built to be checked, not just claimed</h2>
+        <p class="section-desc">Every project below has a live demo and full source — click through, not just take my word for the numbers.</p>
+      </div>
+
+      <!-- Project 1 -->
+      <div class="project reveal">
+        <div class="project-index">01</div>
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-name">Retail Analytics &amp; Customer Segmentation</div>
+            <div class="project-role">DATA ANALYST</div>
+          </div>
+          <p class="project-desc">
+            End-to-end e-commerce analytics pipeline on the UCI Online Retail II dataset (1M+ transactions).
+            Cleaned and validated the data in Python with documented data-quality decisions, loaded it into
+            PostgreSQL with 5 analytical views, ran RFM segmentation to split 5,861 customers into 8 behavioural
+            segments, and shipped a 5-page Power BI dashboard with custom DAX measures covering revenue trends,
+            geography, product performance, and customer behaviour.
+          </p>
+          <div class="project-stack">
+            <span class="chip">Python (pandas)</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">SQL Views</span>
+            <span class="chip">RFM Segmentation</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">DAX</span>
+          </div>
+          <div class="project-stats">
+            <div class="pstat"><div class="num">1M+</div><div class="lbl">transactions processed</div></div>
+            <div class="pstat"><div class="num">5,861</div><div class="lbl">customers segmented</div></div>
+            <div class="pstat"><div class="num">8</div><div class="lbl">RFM segments</div></div>
+            <div class="pstat"><div class="num">5</div><div class="lbl">dashboard pages</div></div>
+          </div>
+          <div class="project-actions">
+            <a href="https://app.powerbi.com/links/RjOglcOQlT?ctid=27282fdd-4c0b-4dfb-ba91-228cd83fdf71&pbi_source=linkShare&bookmarkGuid=cc0c9bc2-110d-462f-9cfd-7b07c865a3e4" target="_blank" rel="noopener" class="link-btn live">▶ Live Dashboard</a>
+            <a href="https://github.com/anshumanSingh-tech/retail-dashboard" target="_blank" rel="noopener" class="link-btn code">⌥ Source Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project reveal">
+        <div class="project-index">02</div>
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-name">IPL Analytics Platform (2008–2026)</div>
+            <div class="project-role">DATA ENGINEER</div>
+          </div>
+          <p class="project-desc">
+            End-to-end IPL analytics platform spanning all 19 seasons, with an automated Cricsheet ingestion
+            pipeline that keeps the dataset current through every completed season. Engineered 29
+            cricket-intelligent features, then trained an XGBoost / Random Forest win-probability model
+            and an auction-value predictor, both deployed on Render and continuously updated.
+          </p>
+          <div class="project-stack">
+            <span class="chip">Python</span>
+            <span class="chip">XGBoost</span>
+            <span class="chip">Random Forest</span>
+            <span class="chip">Feature Engineering</span>
+            <span class="chip">Automated Ingestion</span>
+            <span class="chip">Render Deployment</span>
+          </div>
+          <div class="project-stats">
+            <div class="pstat"><div class="num">19</div><div class="lbl">seasons covered</div></div>
+            <div class="pstat"><div class="num">29</div><div class="lbl">engineered features</div></div>
+            <div class="pstat"><div class="num">⟦X.XX⟧</div><div class="lbl">model AUC</div></div>
+            <div class="pstat"><div class="num">Live</div><div class="lbl">auto-updated each season</div></div>
+          </div>
+          <div class="project-actions">
+            <a href="https://huggingface.co/spaces/Anshuman0301/ipl-analytics" target="_blank" rel="noopener" class="link-btn live">▶ Live App</a>
+            <a href="https://github.com/anshumanSingh-tech/ipl-analytics-platform" target="_blank" rel="noopener" class="link-btn code">⌥ Source Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project reveal">
+        <div class="project-index">03</div>
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-name">Stock Sentiment Engine</div>
+            <div class="project-role">DATA ENGINEER</div>
+          </div>
+          <p class="project-desc">
+            An end-to-end pipeline that scores Indian financial news with FinBERT and tests whether sentiment
+            predicts next-day NSE stock movement. Orchestrated with Prefect, with lag-correlation analysis
+            powered by DuckDB. Built lean by design — zero Docker, zero paid cloud — with fully automated
+            daily news collection.
+          </p>
+          <div class="project-stack">
+            <span class="chip">FinBERT / NLP</span>
+            <span class="chip">Prefect Orchestration</span>
+            <span class="chip">DuckDB</span>
+            <span class="chip">NSE Market Data</span>
+            <span class="chip">Lag-Correlation Analysis</span>
+          </div>
+          <div class="project-stats">
+            <div class="pstat"><div class="num">Daily</div><div class="lbl">automated news ingestion</div></div>
+            <div class="pstat"><div class="num">$0</div><div class="lbl">cloud / infra cost</div></div>
+            <div class="pstat"><div class="num">0</div><div class="lbl">Docker containers — lean by design</div></div>
+          </div>
+          <div class="project-actions">
+            <a href="https://huggingface.co/spaces/Anshuman0301/stock-sentiment-engine" target="_blank" rel="noopener" class="link-btn live">▶ Live Pipeline / Dashboard</a>
+            <a href="https://github.com/anshumanSingh-tech/stock-sentiment-engine" target="_blank" rel="noopener" class="link-btn code">⌥ Source Code</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICATIONS ===================== -->
+  <section id="certs">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-tag"><span class="n">02</span> · CREDENTIALS</div>
+        <h2 class="section-title">Certifications, verifiable on click</h2>
+        <p class="section-desc">Each card links to the issuer's official verification page — not a screenshot.</p>
+      </div>
+
+      <div class="certs-grid reveal">
+        <div class="cert-card">
+          <div class="cert-top">
+            <div class="cert-badge">G</div>
+            <div>
+              <div class="cert-issuer">GOOGLE · COURSERA</div>
+              <div class="cert-name">Google Data Analytics<br>Professional Certificate</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued ⟦May, 2026⟧ · Credential ID ⟦06Y0O2MRVVP2⟧</div>
+          <a href="https://coursera.org/share/aba6828b64cf82f3bc643fa12de748f9" target="_blank" rel="noopener" class="verify-link">↗ Verify Credential</a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-top">
+            <div class="cert-badge">IBM</div>
+            <div>
+              <div class="cert-issuer">MICROSOFT · COURSERA</div>
+              <div class="cert-name">MICROSOFT POWER BI DATA ANALYST<br>Professional Certificate</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued ⟦July, 2026⟧ · Credential ID ⟦WSPRD2XN7V1I⟧</div>
+          <a href="https://coursera.org/share/388e0763ad88af93a4d761be9e728c90" target="_blank" rel="noopener" class="verify-link">↗ Verify Credential</a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-top">
+            <div class="cert-badge">AI</div>
+            <div>
+              <div class="cert-issuer">IBM · JECRC University</div>
+              <div class="cert-name">IBM AI / ML<br>Specialization</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued ⟦July, 2025⟧</div>
+          <a href="https://drive.google.com/drive/folders/1rrEqP4UOX6cFNWpoYTVnP_c9RAPMm5yN" target="_blank" rel="noopener" class="verify-link">↗ Verify Credential</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-tag"><span class="n">03</span> · TOOLKIT</div>
+        <h2 class="section-title">What I actually use day to day</h2>
+        <p class="section-desc">Grouped by what the work needs, not a tag cloud.</p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <div>
+          <div class="skill-group-title">Languages &amp; Querying</div>
+          <div class="skill-list">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">Pandas / NumPy</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Data Engineering</div>
+          <div class="skill-list">
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">DuckDB</span>
+            <span class="skill-pill">Apache Airflow</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">Prefect</span>
+            <span class="skill-pill">ETL Pipelines</span>
+            <span class="skill-pill">Data Quality Checks</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Analytics &amp; ML</div>
+          <div class="skill-list">
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">RFM Segmentation</span>
+            <span class="skill-pill">XGBoost / Random Forest</span>
+            <span class="skill-pill">FinBERT / NLP</span>
+            <span class="skill-pill">Scikit-learn</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Deployment</div>
+          <div class="skill-list">
+            <span class="skill-pill">Render</span>
+            <span class="skill-pill">Git / GitHub</span>
+            <span class="skill-pill">REST APIs</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Visualization</div>
+          <div class="skill-list">
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">Matplotlib / Seaborn</span>
+            <span class="skill-pill">Plotly</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Core Concepts</div>
+          <div class="skill-list">
+            <span class="skill-pill">Dimensional Modeling</span>
+            <span class="skill-pill">A/B Testing</span>
+            <span class="skill-pill">Statistical Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-tag"><span class="n">04</span> · ABOUT</div>
+        <h2 class="section-title">A bit more context</h2>
+      </div>
+
+      <div class="about-grid reveal">
+        <div class="fact-list">
+          <div class="fact"><span class="k">LOCATION</span><span class="v">Jaipur, India</span></div>
+          <div class="fact"><span class="k">ROLE TARGET</span><span class="v">Data Analyst / Data Engineer</span></div>
+          <div class="fact"><span class="k">EXPERIENCE</span><span class="v">Fresher — open to entry-level</span></div>
+          <div class="fact"><span class="k">EDUCATION</span><span class="v">⟦BCA, JECRC University, 2025⟧</span><span class="v">⟦MCA, Manipal University, 2027⟧</span></div>
+          <div class="fact"><span class="k">AVAILABILITY</span><span class="v">Immediate</span></div>
+          <div class="fact"><span class="k">WORK MODE</span><span class="v">Remote / Hybrid / On-site/ WFH</span></div>
+        </div>
+        <div class="about-text">
+          <p>
+            I'm <strong>Anshuman</strong>, a data professional who likes finishing the job all the way to
+            something a non-technical person can open and trust — not just a notebook with a good R² buried in cell 47.
+          </p>
+          <p>
+            My projects intentionally span the two roles I'm targeting: <strong>analytics</strong> (cleaning,
+            modeling, dashboarding — the Retail project) and <strong>engineering</strong> (pipelines, automation,
+            deployment — the IPL and Stock Sentiment projects). I try to ship things that keep running on
+            their own: automated ingestion, scheduled updates, and dashboards that don't go stale the day after a demo.
+          </p>
+          <p>
+            Outside of these three, I'm honing my skills on Leetcode and Kaggle competitions while querying the job market for the right data role — if the schema fits, let's talk. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <div class="section-tag" style="justify-content:center;display:flex;">05 · GET IN TOUCH</div>
+      <h2>Let's talk about the role.</h2>
+      <p class="section-desc">I reply within ⟦24–48 hours⟧. Happy to walk through any project live on a call.</p>
+      <div class="contact-actions">
+        <a href="mailto:anshuman71134@gmail.com" class="btn btn-primary">✉ Email Me</a>
+        <a href="⟦RESUME_PDF_URL⟧" target="_blank" rel="noopener" class="btn btn-outline">Download Résumé</a>
+      </div>
+      <div class="contact-grid">
+        <a href="⟦LINKEDIN_URL⟧" target="_blank" rel="noopener">in/ ⟦your-linkedin-handle⟧</a>
+        <a href="https://github.com/anshumanSingh-tech" target="_blank" rel="noopener">↳ github.com/anshumanSingh-tech</a>
+        <a href="tel:⟦+918690104399⟧">☎ ⟦+91 8690104399⟧</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Built and deployed by Anshuman Singh Chouhan · © <span id="year"></span> · Last updated ⟦July, 2026⟧
+    · <a href="⟦GITHUB_URL_TO_THIS_PORTFOLIO_REPO⟧" target="_blank" rel="noopener">view source</a>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backTop" aria-label="Back to top">↑</button>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Back to top button
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 600);
+  });
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
